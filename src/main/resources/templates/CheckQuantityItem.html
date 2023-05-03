@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments :: head">
+
+<body>
+<header th:replace="fragments ::header"></header>
+<div class="container-fluid ">
+  <div class="row" style="height: 100vh;">
+    <div class="col-3 border-right  border-light border-primary bg-light">
+      <nav class="navbar  navbar-light  border-bottom border-light mt-3">
+        <a class="navbar-brand" th:href="@{/item}">Check Item in Inventory</a>
+      </nav>
+      <nav class="navbar  navbar-light  border-bottom border-light">
+        <a class="navbar-brand" href="#">Order</a>
+      </nav>
+      <nav class="navbar  navbar-light  border-bottom border-light">
+        <a class="navbar-brand" href="#">Check Status Order</a>
+      </nav>
+    </div>
+    <div class="col-9">
+      <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+              <div class="card bg-info text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+
+                  <div class="mb-md-5 mt-md-4 pb-5">
+
+
+                    <form th:action = "@{/item/check}" method="post" th:object="${item}">
+<!--                     -->
+                      <div class="form-outline form-white mb-4">
+
+                        <input type="number" required  class="form-control form-control-lg" placeholder="Enter Item ID" th:field="*{id}"/>
+
+                      </div>
+                      <button class="btn btn-outline-light btn-lg px-5 mt-3" type="submit">Check</button>
+                      <h4 class="text-danger mt-3" th:text="${mes}" />
+                      <div th:object="${inventory}">
+
+                          <div th:if="${inventory != null}" class="d-flex align-items-start flex-column">
+                              <h1>Item name :
+                                  <span th:text  = "${item.getName()}"></span>
+                              </h1>
+                              <h1>Quantity :
+                                  <span th:text = "${inventory.getQuantity()}"></span>
+                              </h1>
+                          </div>
+
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

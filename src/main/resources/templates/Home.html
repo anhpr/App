@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments :: head">
+
+<body>
+    <header th:replace="fragments ::header"></header>
+    <div class="container-fluid " style="margin-top: 80px;">
+        <div class="row" >
+            <div class="col-2 border-right  border-light border-primary bg-light" style="height: 100vh;  position: fixed;left: 0">
+                <nav class="navbar  navbar-light  border-bottom border-light mt-3">
+                    <a class="navbar-brand" th:href="@{/item}">Check Item in Inventory</a>
+                </nav>
+                <nav class="navbar  navbar-light  border-bottom border-light">
+                    <a class="navbar-brand" href="#">Order</a>
+                </nav>
+                <nav class="navbar  navbar-light  border-bottom border-light">
+                    <a class="navbar-brand" href="#">Check Status Order</a>
+                </nav>
+            </div>
+            <div class="col-10 row flex-wrap p-5" style="margin-left: 17%;" >
+                <div th:each="item : ${items}" class="card col-4" style="width: 18rem; height: fit-content; padding-bottom: 20px;margin: 10px 35px;" >
+                    <img class="card-img-top mt-5" src="https://www.xtmobile.vn/vnt_upload/product/08_2019/thumbs/(600x600)_crop_600_iphone_11_pro_max_den_xtmobile.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${item.name}"></h5>
+                        <p class="card-text" th:text="${item.description}"></p>
+                        <p class="card-text text-danger" >[[${item.price}]] VND</p>
+                        <a th:href="@{/order/add/(itemId=${item.id})}" class="btn btn-primary">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
